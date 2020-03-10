@@ -10,7 +10,7 @@ node {
 
 
     //def toolbelt = tool 'toolbelt'
-
+    def sfdx = tool 'sfdx'
 
     // -------------------------------------------------------------------------
     // Check out code from source control.
@@ -30,7 +30,6 @@ node {
         // -------------------------------------------------------------------------
         // Authenticate to Salesforce using the server key.
         // -------------------------------------------------------------------------
-
         stage('Authorize to Salesforce') {
             rc = command "sfdx force:auth:jwt:grant --instanceurl https://login.salesforce.com --clientid ${SF_CONSUMER_KEY} --jwtkeyfile ${server_key_file} --username ${SF_USERNAME} --setalias UAT"
             if (rc != 0) {
