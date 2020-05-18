@@ -5,8 +5,8 @@ node {
 	echo "${params.key}"
 	echo "${params.name}"
 	
-    def SF_CONSUMER_KEY=${params.key}
-    def SF_USERNAME=${params.name}
+    def SF_CONSUMER_KEY="${params.key}"
+    def SF_USERNAME="${params.name}"
     def SERVER_KEY_CREDENTIALS_ID=env.SERVER_KEY_CREDENTIALS_ID
     def DEPLOYDIR='src'
     def TEST_LEVEL='RunLocalTests'
