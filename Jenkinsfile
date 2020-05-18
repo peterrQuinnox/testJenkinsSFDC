@@ -2,9 +2,8 @@
 
 node {
 
-   environment {
-        SFDC_SERV_KEY = credentials('SERVER_KEY_CREDENTIALS_ID')
-    }
+   
+    def SFDC_SERV_KEY = credentials('SERVER_KEY_CREDENTIALS_ID')
 	
     def SF_CONSUMER_KEY="${params.key}"
     def SF_USERNAME="${params.name}"
