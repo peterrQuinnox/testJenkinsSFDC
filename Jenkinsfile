@@ -2,6 +2,10 @@
 
 node {
 
+   environment {
+        SFDC_SERV_KEY = credentials('SERVER_KEY_CREDENTIALS_ID')
+    }
+	
     def SF_CONSUMER_KEY="${params.key}"
     def SF_USERNAME="${params.name}"
     def SERVER_KEY_CREDENTIALS_ID=env.SERVER_KEY_CREDENTIALS_ID
@@ -25,13 +29,14 @@ node {
     // JWT key credentials.
     // -------------------------------------------------------------------------
 
-    withCredentials([file(credentialsId: SERVER_KEY_CREDENTIALS_ID, variable: 'server_key_file')]) {
+    withCredentials([file(credentialsId: $SFDC_SERV_KEY, variable: 'server_key_file')]) {
         // -------------------------------------------------------------------------
         // Authenticate to Salesforce using the server key.
         // -------------------------------------------------------------------------
         stage('Authorize to Salesforce') {
             rc = command "sfdx force:auth:jwt:grant --instanceurl https://login.salesforce.com --clientid ${SF_CONSUMER_KEY} --jwtkeyfile ${server_key_file} --username ${SF_USERNAME} --setalias UAT"
-            if (rc != 0) {
+            
+	    if (rc != 0) {
                 error 'Salesforce org authorization failed.'
             }
         }
