@@ -28,7 +28,7 @@ node {
     // JWT key credentials.
     // -------------------------------------------------------------------------
 
-    withCredentials([file(credentialsId: $SFDC_SERV_KEY, variable: 'server_key_file')]) {
+    withCredentials([file(credentialsId: SFDC_SERV_KEY, variable: 'server_key_file')]) {
         // -------------------------------------------------------------------------
         // Authenticate to Salesforce using the server key.
         // -------------------------------------------------------------------------
